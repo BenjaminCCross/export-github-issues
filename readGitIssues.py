@@ -1,18 +1,16 @@
 from github import Github
-import csv 
 from dotenv import load_dotenv
-load_dotenv()
+import csv 
 import os
 
+load_dotenv()
 
-ACCESS_TOKEN=os.getenv("OATH_TOKEN")
-
-g = Github(ACCESS_TOKEN)
+g = Github(os.getenv("OATH_TOKEN"))
 repo = g.get_repo(os.getenv("PREF_REPO"))
 
 repoLabelsList = []
 for label in repo.get_labels():
-            repoLabelsList.append(label.name)
+    repoLabelsList.append(label.name)
 
 # Collect issues regardless of state
 open_issues = repo.get_issues(state="open")
